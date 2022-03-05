@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # custom
     "core",
+    "book",
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
     # use json as default request format in tests so that
     # no need to add format='json' in test client on every post, put and patch method
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
