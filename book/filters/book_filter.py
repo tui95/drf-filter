@@ -8,6 +8,7 @@ NUMBER_FIELD_LOOKUP_EXPRS = ["exact", "lt", "lte", "gt", "gte"]
 
 
 class BookFilterSet(django_filters.FilterSet):
+    # notice that declared fields don't need to be included in class Meta's fields unlike ModelSerializer
     author = django_filters.CharFilter(field_name="author__name", lookup_expr="exact")
     author_icontains = django_filters.CharFilter(field_name="author__name", lookup_expr="icontains")
 
