@@ -11,6 +11,8 @@ class BookFilterSet(django_filters.FilterSet):
     # notice that declared fields don't need to be included in class Meta's fields unlike ModelSerializer
     author = django_filters.CharFilter(field_name="author__name", lookup_expr="exact")
     author_icontains = django_filters.CharFilter(field_name="author__name", lookup_expr="icontains")
+    # notice exclude=True. This will filter only the ones that not match condition
+    name__not_icontains = django_filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
 
     # number of books that authors have written
     n_books = django_filters.NumericRangeFilter(method="filter_n_books")
