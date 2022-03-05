@@ -1,0 +1,16 @@
+[run]
+relative_files = True
+source = .
+omit =
+  */migrations/*
+  */settings*
+  */asgi.py
+  */wsgi.py
+  */tests*
+  manage.py
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover

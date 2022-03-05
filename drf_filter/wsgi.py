@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_filter.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_filter.settings.local")
 
 application = get_wsgi_application()

@@ -20,7 +20,7 @@ env = environ.Env(
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Take environment variables from .env file
 environ.Env.read_env(BASE_DIR / ".env")
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "django_filters",
     "drf_spectacular",
     # custom
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    # use json as default request format in tests so that
+    # no need to add format='json' in test client on every post, put and patch method
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 SPECTACULAR_SETTINGS = {
