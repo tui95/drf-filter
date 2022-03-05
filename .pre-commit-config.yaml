@@ -10,6 +10,8 @@ repos:
     rev: "22.1.0"
     hooks:
       - id: black
+        # https://github.com/psf/black/issues/438#issuecomment-522114098
+        exclude: ^.+\/migrations\/.+
 
   - repo: https://github.com/pycqa/flake8
     rev: "4.0.1"
