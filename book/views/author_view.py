@@ -6,7 +6,7 @@ from book.models.author import Author
 from book.serializers.author_serializer import AuthorSerializer
 
 
-class AuthorShortcutFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class AuthorSimpleShortcutFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filter_backends = [dj_filters.DjangoFilterBackend, filters.OrderingFilter]
@@ -22,6 +22,29 @@ class AuthorSimpleFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filterset_class = AuthorSimpleFilterSet
+
+
+class AuthorComplexShortcutFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+    filter_backends = [dj_filters.DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = {
+        "name": [
+            "exact",
+            "iexact",
+            "icontains",
+            "in",
+        ],
+        "age": [
+            "exact",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "in",
+        ],
+    }
+    ordering_fields = ["name", "age"]
 
 
 class AuthorViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
