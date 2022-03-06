@@ -11,7 +11,7 @@ class BookFilterSet(filters.FilterSet):
     # notice that declared fields don't need to be included in class Meta's fields unlike ModelSerializer
     author = filters.CharFilter(field_name="author__name", lookup_expr="exact")
     author__icontains = filters.CharFilter(field_name="author__name", lookup_expr="icontains")
-    # notice exclude=True. This will filter only the ones that not match condition
+    # notice exclude=True. This will filter only the ones that don't match the condition
     name__not_icontains = filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
 
     author_with_n_books = filters.NumericRangeFilter(method="filter_author_with_n_books")
