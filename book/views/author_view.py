@@ -15,7 +15,7 @@ class AuthorSimpleShortcutFilterViewSet(mixins.ListModelMixin, viewsets.GenericV
     # need to set `rest_framework.filters.OrderingFilter` in filter_backends
     # if not specified, will default to serializer's fields
     # if value is "__all__", will allow ordering by fields in any model field or queryset aggregate
-    ordering_fields = ["name"]
+    ordering_fields = ["name", "age"]
 
 
 class AuthorSimpleFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
