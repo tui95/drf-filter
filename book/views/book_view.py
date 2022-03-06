@@ -5,7 +5,7 @@ from rest_framework.request import Request
 
 from book.filters.book_filter import BookFilterSet, ReadingBookFilterSet
 from book.models.book import Book
-from book.serializers.book_serializer import BookSerializer
+from book.serializers.book_serializer import BookExportSerializer, BookSerializer
 from book.services.book_export_service import export_books_as_excel
 from core.renderers import XLSXRenderer
 
@@ -24,7 +24,7 @@ class ReadingBookViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 class BookExportView(generics.GenericAPIView):
     queryset = Book.objects.with_related_objects()
-    serializer_class = BookSerializer
+    serializer_class = BookExportSerializer
     filterset_class = BookFilterSet
     renderer_classes = [XLSXRenderer]
 

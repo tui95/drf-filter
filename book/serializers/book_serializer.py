@@ -19,3 +19,10 @@ class BookSerializer(serializers.ModelSerializer):
             "author",
             "publication_date",
         ]
+
+
+class BookExportSerializer(BookSerializer):
+    author = serializers.CharField(source="author.name")
+
+    class Meta(BookSerializer.Meta):
+        pass
