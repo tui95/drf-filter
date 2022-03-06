@@ -5,7 +5,7 @@ from django.db import models
 from book.models.author import Author
 
 
-class BookManager(models.Manager):
+class BookQuerySet(models.QuerySet):
     def with_related_objects(self) -> models.QuerySet[Book]:
         return self.select_related("author")
 
@@ -19,4 +19,4 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publication_date = models.DateField()
 
-    objects = BookManager()
+    objects = BookQuerySet.as_manager()
