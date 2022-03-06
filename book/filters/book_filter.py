@@ -61,10 +61,10 @@ class BookFilterSet(filters.FilterSet):
             Custom method like this one must have same signature of parameters ordering, (queryset, name, value).
             Parameter names don't matter.
 
-        """
-        if not value:
-            return queryset
+            Expect value to not be empty since it is handled before this method is called.
+            If value is empty, it will exit and won't even reach this method.
 
+        """
         author_books_count_queryset = queryset.annotate(books_count=models.Count("author__book"))
 
         q_object = models.Q()
