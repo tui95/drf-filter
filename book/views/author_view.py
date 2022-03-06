@@ -11,6 +11,7 @@ class AuthorSimpleShortcutFilterViewSet(mixins.ListModelMixin, viewsets.GenericV
     serializer_class = AuthorSerializer
     filter_backends = [dj_filters.DjangoFilterBackend, filters.OrderingFilter]
     # fields must match model fields
+    # if value is "__all__", will auto create filter with all model fields except `id` field
     filterset_fields = ["name", "age"]
     # need to set `rest_framework.filters.OrderingFilter` in filter_backends
     # if not specified, will default to serializer's fields
