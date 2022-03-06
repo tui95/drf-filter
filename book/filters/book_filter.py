@@ -14,7 +14,6 @@ class BookFilterSet(filters.FilterSet):
     # notice exclude=True. This will filter only the ones that not match condition
     name__not_icontains = filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
 
-    # number of books that authors have written
     author_with_n_books = filters.NumericRangeFilter(method="filter_author_with_n_books")
 
     ordering = filters.OrderingFilter(
