@@ -25,7 +25,7 @@ class BookFactory(factory.django.DjangoModelFactory):
 
     isbn = UniqueFaker("isbn10")
     name = factory.Faker("text", max_nb_chars=30)
-    pages = factory.Faker("pyint", min_value=10)
+    pages = factory.Faker("pyint", min_value=10, max_value=1000)
     rating = factory.Faker("pyfloat", min_value=0, max_value=10, right_digits=1)
     price = factory.Faker("pydecimal", min_value=1, max_value=500, left_digits=4, right_digits=2)
     # get existing random author
