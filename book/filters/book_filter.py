@@ -15,7 +15,7 @@ class BookFilterSet(django_filters.FilterSet):
     name__not_icontains = django_filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
 
     # number of books that authors have written
-    n_books = django_filters.NumericRangeFilter(method="filter_n_books")
+    author_with_n_books = django_filters.NumericRangeFilter(method="filter_author_with_n_books")
 
     ordering = django_filters.OrderingFilter(
         fields=[
@@ -41,9 +41,14 @@ class BookFilterSet(django_filters.FilterSet):
             "publication_date": NUMBER_FIELD_LOOKUP_EXPRS,
         }
 
-    def filter_n_books(self, queryset: models.QuerySet[Book], name: str, value: slice) -> models.QuerySet[Book]:
+    def filter_author_with_n_books(
+        self,
+        queryset: models.QuerySet[Book],
+        name: str,
+        value: slice,
+    ) -> models.QuerySet[Book]:
         """
-        Filter books that match range of number of authors' books
+        Filter books that were written by authors who have written n books
 
         Args:
             queryset (models.QuerySet[Book]): queryset passed from view class
