@@ -1,5 +1,5 @@
-import django_filters
 from django.db import models
+from django_filters import rest_framework as filters
 
 from book.models.book import Book
 
@@ -7,17 +7,17 @@ TEXT_FIELD_LOOKUP_EXPRS = ["exact", "iexact", "icontains", "in"]
 NUMBER_FIELD_LOOKUP_EXPRS = ["exact", "lt", "lte", "gt", "gte"]
 
 
-class BookFilterSet(django_filters.FilterSet):
+class BookFilterSet(filters.FilterSet):
     # notice that declared fields don't need to be included in class Meta's fields unlike ModelSerializer
-    author = django_filters.CharFilter(field_name="author__name", lookup_expr="exact")
-    author__icontains = django_filters.CharFilter(field_name="author__name", lookup_expr="icontains")
+    author = filters.CharFilter(field_name="author__name", lookup_expr="exact")
+    author__icontains = filters.CharFilter(field_name="author__name", lookup_expr="icontains")
     # notice exclude=True. This will filter only the ones that not match condition
-    name__not_icontains = django_filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
+    name__not_icontains = filters.CharFilter(field_name="name", lookup_expr="icontains", exclude=True)
 
     # number of books that authors have written
-    author_with_n_books = django_filters.NumericRangeFilter(method="filter_author_with_n_books")
+    author_with_n_books = filters.NumericRangeFilter(method="filter_author_with_n_books")
 
-    ordering = django_filters.OrderingFilter(
+    ordering = filters.OrderingFilter(
         fields=[
             # field name, exposed name
             ("author__name", "author"),

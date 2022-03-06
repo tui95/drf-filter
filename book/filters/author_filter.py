@@ -1,10 +1,10 @@
-import django_filters
+from django_filters import rest_framework as filters
 
 from book.models.author import Author
 
 
-class AuthorSimpleFilterSet(django_filters.FilterSet):
-    ordering = django_filters.OrderingFilter(
+class AuthorSimpleFilterSet(filters.FilterSet):
+    ordering = filters.OrderingFilter(
         fields=["name", "age"],
     )
 
@@ -13,8 +13,8 @@ class AuthorSimpleFilterSet(django_filters.FilterSet):
         fields = ["name", "age"]
 
 
-class AuthorFilterSet(django_filters.FilterSet):
-    ordering = django_filters.OrderingFilter(
+class AuthorFilterSet(filters.FilterSet):
+    ordering = filters.OrderingFilter(
         fields=["name", "age"],
     )
 
